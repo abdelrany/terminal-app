@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "name": "Agent Payment App",
+  "description": "Payment processing app for agents",
+  "type": "web",
+  "launch_path": "/index.html",
+  "icons": {
+    "56": "/icons/icon-56.png",
+    "112": "/icons/icon-112.png"
+  },
+  "developer": {
+    "name": "Your Name",
+    "url": "https://yourwebsite.com"
+  },
+  "locales": {
+    "en-US": {
+      "name": "Agent Payment App",
+      "description": "Payment processing app for agents"
+    }
+  },
+  "default_locale": "en-US",
+  "permissions": {
+    "systemXHR": {
+      "description": "Required to make API calls"
+    }
+  }
+}
