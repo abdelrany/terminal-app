@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useNavigation } from '../hooks/useNavigation';
 import { login } from '../services/api';
+import { Header } from './Header/Header';
+import { setAuthData } from '../utils/auth';
 
 export const Login = ({ onLogin }) => {
   const history = useHistory();
@@ -21,9 +23,9 @@ export const Login = ({ onLogin }) => {
   const handleLogin = async () => {
     try {
       const response = await login(phone, password);
-      if (response.data.token) {
-        onLogin(response.data.token);
-        // Redirect to home page after successful login
+      if (response.data.data) {
+        setAuthData(response.data.data);
+        onLogin(response.data.data.token);
         history.push('/agent/home');
       }
     } catch (err) {
@@ -33,7 +35,7 @@ export const Login = ({ onLogin }) => {
 
   return (
     <div className="login-container">
-      <h2>Agent Login</h2>
+      <Header title="Agent Login"/>
       <input
         type="tel"
         value={phone}

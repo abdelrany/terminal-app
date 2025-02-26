@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getAuthData } from '../utils/auth';
 
 const BASE_URL = 'https://backend-test.tookeez.com/api';
 
@@ -9,7 +10,16 @@ const api = axios.create({
   }
 });
 
-// Add token to requests
+// Add request interceptor to automatically add token
+api.interceptors.request.use((config) => {
+  const authData = getAuthData();
+  if (authData.token) {
+    config.headers.Authorization = `Bearer ${authData.token}`;
+  }
+  return config;
+});
+
+// Export setAuthToken function
 export const setAuthToken = (token) => {
   if (token) {
     api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -20,7 +30,6 @@ export const setAuthToken = (token) => {
 
 // Auth APIs
 export const login = (phoneNumber, password) => {
-
   return api.post('/login_check', {
     username: phoneNumber,
     password: password,

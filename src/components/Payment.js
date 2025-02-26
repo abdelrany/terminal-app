@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import QRCode from 'qrcode.react';
 import { useNavigation } from '../hooks/useNavigation';
 import { initiatePayment, getPaymentStatus } from '../services/api';
+import { Header } from './Header/Header';
 
 export const Payment = () => {
   const [amount, setAmount] = useState('');
@@ -39,7 +40,7 @@ export const Payment = () => {
 
   return (
     <div className="payment-container">
-      <h2>Process Payment</h2>
+      <Header title="Process Payment"/>
       <input
         type="number"
         value={amount}

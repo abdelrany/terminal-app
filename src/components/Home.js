@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useNavigation } from '../hooks/useNavigation';
+import { clearAuthData } from '../utils/auth';
 
 export const Home = () => {
   const history = useHistory();
@@ -8,7 +9,7 @@ export const Home = () => {
   const selectedIndex = useNavigation(elements);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    clearAuthData();
     history.push('/agent');
   };
 

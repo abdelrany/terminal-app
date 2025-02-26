@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigation } from '../../hooks/useNavigation';
 import { getTransactionHistory } from '../../services/api';
 import css from './History.module.css';
+import { Header } from '../Header/Header';
 
 export const History = () => {
   const [transactions, setTransactions] = useState([]);
@@ -40,7 +41,7 @@ export const History = () => {
 
   return (
     <div className={css.historyContainer}>
-      <h2>Transaction History</h2>
+      <Header title="Transaction History"/>
       <div className={css.filters}>
         <input
           type="date"
